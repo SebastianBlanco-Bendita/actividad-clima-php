@@ -1,54 +1,56 @@
 {
-  "workflowApiVersion": "1.1",
-  "metaData": {
-    "icon": "Images/icon.png",
-    "category": "message"
-  },
-  "type": "REST",
-  "lang": {
-    "en-US": {
-      "name": "CA Evento Salesforce",
-      "description": "A custom Journey Builder activity using workflow API v1.1 format."
-    }
-  },
-  "arguments": {
-    "execute": {
-      "inArguments": [],
-      "url": "https://sfmc-app-node-510a6cb1f80.herokuapp.com/execute"
-    }
-  },
-  "configurationArguments": {
-    "publish": {
-      "url": "https://sfmc-app-node-510a6cb1f80.herokuapp.com/publish"
-    }
-  },
-  "schema": {
+    "workflowApiVersion": "1.1",
+    "key": "easypods-whatsapp-activity-bryan",
+    "name": "Envío WhatsApp (Easypods)",
+    "type": "REST",
+    "lang": {
+        "en-US": {
+            "name": "WhatsApp Send (Easypods)"
+        }
+    },
+    "metaData": {
+        "icon": "images/icon.png",
+        "category": "messages"
+    },
     "arguments": {
-      "execute": {
-        "inArguments": [
-          {
-            "name": {
-              "dataType": "String",
-              "isNullable": false,
-              "direction": "in"
+        "execute": {
+            "inArguments": [
+                { "channelNumber": "{{Interaction.REST-1.channelNumber}}" },
+                { "authToken": "{{Interaction.REST-1.authToken}}" },
+                { "templateName": "{{Interaction.REST-1.templateName}}" },
+                { "templateParams": "{{Interaction.REST-1.templateParams}}" },
+                { "phoneNumber": "{{Contact.Attribute.DE.PhoneNumber}}" }
+            ],
+            "outArguments": [],
+            "url": "https://TU-URL-DE-HEROKU/execute.php",
+            "verb": "POST",
+            "useJwt": false
+        }
+    },
+    "configurationArguments": {
+        "save": { "url": "https://TU-URL-DE-HEROKU/save.php" },
+        "publish": { "url": "https://TU-URL-DE-HEROKU/publish.php" },
+        "validate": { "url": "https://TU-URL-DE-HEROKU/validate.php" }
+    },
+    "userInterfaces": {
+        "configModal": {
+            "url": "index.html",
+            "height": 500,
+            "width": 700
+        }
+    },
+    "schema": {
+        "arguments": {
+            "execute": {
+                "inArguments": [
+                    { "channelNumber": { "dataType": "Text", "isNullable": false, "direction": "in" } },
+                    { "authToken": { "dataType": "Text", "isNullable": false, "direction": "in" } },
+                    { "templateName": { "dataType": "Text", "isNullable": false, "direction": "in" } },
+                    { "templateParams": { "dataType": "Text", "isNullable": true, "direction": "in" } },
+                    { "phoneNumber": { "dataType": "Phone", "isNullable": false, "direction": "in" } }
+                ],
+                "outArguments": []
             }
-          },
-          {
-            "lastName": {
-              "dataType": "String",
-              "isNullable": false,
-              "direction": "in"
-            }
-          },
-          {
-            "edad": {
-              "dataType": "Integer",
-              "isNullable": false,
-              "direction": "in"
-            }
-          }
-        ]
-      }
+        }
     }
-  }
 }
