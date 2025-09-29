@@ -14,29 +14,37 @@
     },
     "arguments": {
         "execute": {
-            "inArguments": [
-                { "channelNumber": "{{Interaction.REST-1.channelNumber}}" },
-                { "authToken": "{{Interaction.REST-1.authToken}}" },
-                { "templateName": "{{Interaction.REST-1.templateName}}" },
-                { "templateParams": "{{Interaction.REST-1.templateParams}}" },
-                { "phoneNumber": "{{Contact.Attribute.DE.PhoneNumber}}" }
-            ],
+            "inArguments": [],
             "outArguments": [],
-            "url": "https://TU-URL-DE-HEROKU/execute.php",
+            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/execute.php",
+            "verb": "POST",
+            "useJwt": false,
+            "timeout": 10000
+        }
+    },
+    "configurationArguments": {
+        "save": {
+            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/save.php",
+            "verb": "POST",
+            "useJwt": false
+        },
+        "publish": {
+            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/publish.php",
+            "verb": "POST",
+            "useJwt": false
+        },
+        "validate": {
+            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/validate.php",
             "verb": "POST",
             "useJwt": false
         }
     },
-    "configurationArguments": {
-        "save": { "url": "https://TU-URL-DE-HEROKU/save.php" },
-        "publish": { "url": "https://TU-URL-DE-HEROKU/publish.php" },
-        "validate": { "url": "https://TU-URL-DE-HEROKU/validate.php" }
-    },
     "userInterfaces": {
         "configModal": {
-            "url": "index.html",
+            "url": "index.php",
             "height": 500,
-            "width": 700
+            "width": 700,
+            "fullscreen": false
         }
     },
     "schema": {
