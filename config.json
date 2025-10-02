@@ -1,64 +1,80 @@
 {
-    "workflowApiVersion": "1.1",
-    "key": "easypods-whatsapp-activity-bryan",
-    "name": "Envío WhatsApp (Easypods)",
-    "type": "REST",
-    "lang": {
-        "en-US": {
-            "name": "WhatsApp Send (Easypods)"
-        }
-    },
-    "metaData": {
-        "icon": "images/icon.png",
-        "category": "messages"
-    },
-    "arguments": {
-        "execute": {
-            "inArguments": [],
-            "outArguments": [],
-            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/execute.php",
-            "verb": "POST",
-            "useJwt": false,
-            "timeout": 10000
-        }
-    },
-    "configurationArguments": {
-        "save": {
-            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/save.php",
-            "verb": "POST",
-            "useJwt": false
-        },
-        "publish": {
-            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/publish.php",
-            "verb": "POST",
-            "useJwt": false
-        },
-        "validate": {
-            "url": "https://custom-cliente-jsons-62b81355b9be.herokuapp.com/validate.php",
-            "verb": "POST",
-            "useJwt": false
-        }
-    },
-    "userInterfaces": {
-        "configModal": {
-            "url": "index.php",
-            "height": 500,
-            "width": 700,
-            "fullscreen": false
-        }
-    },
-    "schema": {
-        "arguments": {
-            "execute": {
-                "inArguments": [
-                    { "channelNumber": { "dataType": "Text", "isNullable": false, "direction": "in" } },
-                    { "authToken": { "dataType": "Text", "isNullable": false, "direction": "in" } },
-                    { "templateName": { "dataType": "Text", "isNullable": false, "direction": "in" } },
-                    { "templateParams": { "dataType": "Text", "isNullable": true, "direction": "in" } },
-                    { "phoneNumber": { "dataType": "Phone", "isNullable": false, "direction": "in" } }
-                ],
-                "outArguments": []
-            }
-        }
+  "workflowApiVersion": "1.1",
+  "key": "template-configurator-activity", // AÑADIDO: Una clave única para tu actividad
+  "name": "Configurador de Plantillas",
+  "type": "REST",
+  "lang": {
+    "en-US": {
+      "name": "Template Configurator",
+      "description": "Select a template and configure its dynamic variables."
     }
+  },
+  "metaData": {
+    "icon": "Images/icon.png",
+    "category": "messages" // CORREGIDO: 'messages' en plural como en el ejemplo funcional
+  },
+  "arguments": {
+    "execute": {
+      "inArguments": [], // CRÍTICO: Debe ser un array vacío. El JS lo llenará.
+      "outArguments": [],
+      "url": "https://deconexion-22a08197f7e5.herokuapp.com/execute.php",
+      "verb": "POST",
+      "useJwt": false, // CORREGIDO: "useJwt" con 'J' minúscula y sin token por ahora
+      "timeout": 10000
+    }
+  },
+  "configurationArguments": {
+    "save": {
+      "url": "https://deconexion-22a08197f7e5.herokuapp.com/save.php",
+      "verb": "POST",
+      "useJwt": false // CORREGIDO: "useJwt" con 'J' minúscula
+    },
+    "publish": {
+      "url": "https://deconexion-22a08197f7e5.herokuapp.com/publish.php",
+      "verb": "POST",
+      "useJwt": false // CORREGIDO: "useJwt" con 'J' minúscula
+    },
+    "validate": {
+        "url": "https://deconexion-22a08197f7e5.herokuapp.com/validate.php",
+        "verb": "POST",
+        "useJwt": false // CORREGIDO: "useJwt" con 'J' minúscula
+    }
+  },
+  "userInterfaces": {
+      "configModal": {
+          "url": "index.php", // AÑADIDO: Bloque explícito para la UI
+          "height": 600,
+          "width": 800
+      }
+  },
+  "schema": {
+    "arguments": {
+      "execute": {
+        "inArguments": [
+          {
+            "contactKey": {
+              "dataType": "String",
+              "isNullable": false,
+              "direction": "in"
+            }
+          },
+          {
+            "plantillaSeleccionada": {
+              "dataType": "String",
+              "isNullable": true,
+              "direction": "in"
+            }
+          },
+          {
+            "variablesConfiguradas": {
+              "dataType": "String",
+              "isNullable": true,
+              "direction": "in"
+            }
+          }
+        ],
+        "outArguments": []
+      }
+    }
+  }
 }
